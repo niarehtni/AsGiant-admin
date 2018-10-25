@@ -1,0 +1,30 @@
+#container {
+  width: 100%;
+  height: 40px;
+  margin: 0 auto;
+  z-index: 9;
+  background-color: #fff;
+}
+#nav {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  background-color: #fff;
+}
+.title {
+  text-align: center;
+  color: #444;
+}
+.arrow {
+  color: #444;
+  font-size: 30px;
+  line-height: 40px;
+  margin-left: 30%;
+}
+.box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
