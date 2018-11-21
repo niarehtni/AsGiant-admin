@@ -12,12 +12,14 @@ import VueQuillEditor from 'vue-quill-editor'
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
-
-Vue.use(VueQuillEditor)
+import Avue from '@smallwei/avue/lib/index.js'
+import '@smallwei/avue/lib/theme-chalk/index.css'
 
 Vue.prototype.$http = axios
 Vue.config.productionTip = false
 Vue.use(ElementUI)
+Vue.use(VueQuillEditor)
+Vue.use(Avue, axios)
 
 /* eslint-disable no-new */
 new Vue({

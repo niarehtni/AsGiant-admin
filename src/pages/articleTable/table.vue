@@ -1,38 +1,40 @@
 <template>
   <section>
-    <el-row>
-      <el-col :span="24">
-        <!--表格-->
-        <el-table
-          :data="tableData"
-          border
-          style="width: 100%">
-          <!-- <el-table-column type="selection">
-          </el-table-column> -->
-          <el-table-column
-            prop="title"
-            label="文章题目"
-            width="180">
-          </el-table-column>
-          <el-table-column label="操作">
-            <template slot-scope="scope">
-              <el-button type="primary" size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-              <el-button type="success" size="small" @click="uploadArticle(scope.$index, scope.row)">修改文章</el-button>
-            </template>
-          </el-table-column>
-        </el-table>
-        <!-- <div class="block">
-          <el-pagination
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            :current-page="currentPage"
-            :page-size="100"
-            layout="prev, pager, next, jumper"
-            :total="1000">
-          </el-pagination>
-        </div> -->
-      </el-col>
-    </el-row>
+    <el-card class="box-card">
+      <el-row>
+        <el-col :span="24">
+          <!--表格-->
+          <el-table
+            :data="tableData"
+            border
+            style="width: 100%">
+            <!-- <el-table-column type="selection">
+            </el-table-column> -->
+            <el-table-column
+              prop="title"
+              label="文章题目"
+              width="180">
+            </el-table-column>
+            <el-table-column label="操作">
+              <template slot-scope="scope">
+                <el-button type="primary" size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                <el-button type="success" size="small" @click="uploadArticle(scope.$index, scope.row)">修改文章</el-button>
+              </template>
+            </el-table-column>
+          </el-table>
+          <!-- <div class="block">
+            <el-pagination
+              @size-change="handleSizeChange"
+              @current-change="handleCurrentChange"
+              :current-page="currentPage"
+              :page-size="100"
+              layout="prev, pager, next, jumper"
+              :total="1000">
+            </el-pagination>
+          </div> -->
+        </el-col>
+      </el-row>
+    </el-card>
 
     <el-dialog title="修改文章" :visible.sync="AdddialogVisible">
       <el-form :model="userForm">
