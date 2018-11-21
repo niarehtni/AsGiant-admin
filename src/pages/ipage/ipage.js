@@ -1,4 +1,4 @@
-import Vheader from '../header/header.vue'
+import Vheader from './header/header.vue'
 export default {
   name: 'ipage',
   components: {

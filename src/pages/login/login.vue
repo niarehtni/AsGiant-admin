@@ -45,5 +45,5 @@
   </div>
 </template>
 
-<script src='../login.js'></script>
-<style src='../login.less'></style>
+<script src='./login.js'></script>
+<style src='./login.less'></style>
