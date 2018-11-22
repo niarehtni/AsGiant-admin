@@ -1,3 +1,5 @@
+import * as loginLogic from '@/network/model/loginLogic'
+
 export default {
   name: 'login',
   components: {
@@ -5,10 +7,12 @@ export default {
   data () {
     return {
       imgsrc: 'http://localhost/demo/00.vipadmin/sever/think-admin/public/admin/AuthCode/ImageCode',
-      username: '',
-      password: '',
+      loginForm: {
+        username: '954663633@qq.com',
+        password: '123456',
+        code: ''
+      },
       activeName: 'emailLogin',
-      yzm: '',
       enterUser: '请输入邮箱'
     }
   },
@@ -25,11 +29,33 @@ export default {
       img.src = 'http://localhost/demo/00.vipadmin/sever/think-admin/public/admin/AuthCode/ImageCode'
     },
     login () {
-      this.$router.push({path: '/ipage'})
       console.log('====================================')
-      console.log(this.username)
-      console.log(this.password)
+      console.log(loginLogic.loginEmail)
       console.log('====================================')
+      let data = {
+        'code': this.loginForm.code,
+        'e_mail': this.loginForm.username,
+        'password': this.loginForm.password
+      }
+      loginLogic.loginEmail(data, (res) => {
+        if (res.flag === 0) {
+          this.$message({
+            message: res.msg,
+            type: 'error'
+          })
+          this.refreshCode()
+        }
+        if (res.flag === 1) {
+          sessionStorage.setItem('Authorization', res.msg)
+          this.$router.push({path: '/ipage'})
+
+          // this.$store.dispatch('LoginByUsername', this.loginForm).then(res => {
+          //   this.$router.push({
+          //     path: this.tagWel.value
+          //   })
+          // })
+        }
+      })
     },
     handleClick (tab, event) {
       let enUser = {

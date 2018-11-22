@@ -77,6 +77,33 @@ let router = new Router({
           import('@/pages/editor/editor.vue'),
           hidden: true
         }]
+    },
+    {
+      path: '/manage',
+      name: '管理员',
+      component: () =>
+        import('@/pages/ipage/ipage.vue'),
+      iconCls: 'fa fa-users',
+      children: [
+        {
+          path: '/database',
+          component: () =>
+            import('@/pages/database/database.vue'),
+          name: '数据库'
+        },
+        {
+          path: '/usermanage',
+          component: () =>
+            import('@/pages/usermanage/index.vue'),
+          name: '用户管理'
+        },
+        {
+          path: '/role',
+          component: () =>
+            import('@/pages/role/role.vue'),
+          name: '角色管理'
+        }
+      ]
     }
   ]
 })

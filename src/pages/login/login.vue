@@ -19,13 +19,13 @@
           <div class="login form">
             <div class="group">
               <div class="group-ipt email">
-                <input type="text" name="email" id="email" class="ipt"  v-model="username" :placeholder="enterUser" required>
+                <input type="text" name="email" id="email" class="ipt" :placeholder="enterUser" v-model="loginForm.username" required>
               </div>
               <div class="group-ipt password">
-                <input type="password" name="password" id="password" class="ipt"  v-model="password" placeholder="请输入密码" required>
+                <input type="password" name="password" id="password" class="ipt" placeholder="请输入密码" v-model="loginForm.password" required>
               </div>
               <div class="group-ipt verify">
-                <input type="text" name="verify" id="verify" class="ipt" placeholder="输入验证码" v-model="yzm" required>
+                <input type="text" name="verify" id="verify" class="ipt" placeholder="输入验证码" v-model="loginForm.code" required>
                 <img class="imgcode" ref="img" :src="imgsrc" alt="验证码" @click="reimg()"/>
               </div>
             </div>

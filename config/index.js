@@ -13,13 +13,24 @@ module.exports = {
 
     proxyTable: {
       '/api': {
-        target: 'http://localhost:80/', // 接口的域名
-        // secure: false,  // 如果是https接口，需要配置这个参数
-        changeOrigin: false, // 如果接口跨域，需要进行这个参数配置
-        pathRewrite: {
-          '^/api': '/'
+            // 目标 API 地址
+            target: 'http://localhost:80/',
+            // 如果要代理 websockets
+            ws: true,
+            pathRewrite: {
+              '^/api': '/'
+            },
+            // 将主机标头的原点更改为目标URL
+            changeOrigin: false
         }
-      }
+      // '/api': {
+      //   target: 'http://localhost:80/', // 接口的域名
+      //   // secure: false,  // 如果是https接口，需要配置这个参数
+      //   changeOrigin: false, // 如果接口跨域，需要进行这个参数配置
+      //   pathRewrite: {
+      //     '^/api': '/'
+      //   }
+      // }
     },
 
     // Various Dev Server settings
