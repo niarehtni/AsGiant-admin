@@ -3,8 +3,8 @@
     <div id="box"></div>
     <div class="cent-box">
       <div class="cent-box-header">
-        <h1 class="main-title">千寻</h1>
-        <h2 class="sub-title">生活热爱分享 - Thousands Find</h2>
+        <h1 class="main-title">AsGiant</h1>
+        <h2 class="sub-title">站在巨人的肩膀上  -myq</h2>
       </div>
 
       <div class="cont-main clearfix">
@@ -39,8 +39,8 @@
     </div>
 
     <div class="footer">
-      <p>千寻 - Thousands Find</p>
-      <p>Designed By ZengRong & <a href="zrong.me">zrong.me</a> 2016</p>
+      <!-- <p>Credan - Thousands Find</p> -->
+      <p>Designed By AsGiant 2018</p>
     </div>
   </div>
 </template>

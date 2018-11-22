@@ -36,7 +36,7 @@ export default {
       })
         .then(() => {
           sessionStorage.removeItem('user')
-          _this.$router.push('/login')
+          _this.$router.push('/')
         })
         .catch(() => {})
     },
@@ -52,11 +52,15 @@ export default {
   },
   mounted () {
     var windowWidth = document.body.clientWidth
+
     if (windowWidth >= 1440) {
       this.collapsed = false
+      this.collapsedIcon = false
+      console.log('============大屏==============')
     } else {
       this.collapsed = true
       this.collapsedIcon = true
+      console.log('============小屏==============')
     }
 
     var user = sessionStorage.getItem('user')

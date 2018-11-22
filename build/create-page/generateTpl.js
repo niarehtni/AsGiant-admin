@@ -1,8 +1,10 @@
 exports.vue = function (pageName) {
   var tpl = `<template>
-  <div class="${pageName}">
-    ${pageName}
-  </div>
+  <section>
+    <el-card class="box-card ${pageName}">
+      ${pageName}
+    </el-card>
+  </section>
 </template>
 
 <script>
