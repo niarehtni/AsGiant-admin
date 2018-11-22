@@ -19,10 +19,10 @@
           <div class="login form">
             <div class="group">
               <div class="group-ipt email">
-                <input type="text" name="email" id="email" class="ipt"  v-model="username" placeholder="邮箱地址" required>
+                <input type="text" name="email" id="email" class="ipt"  v-model="username" :placeholder="enterUser" required>
               </div>
               <div class="group-ipt password">
-                <input type="password" name="password" id="password" class="ipt"  v-model="password" :placeholder="enterPssword" required>
+                <input type="password" name="password" id="password" class="ipt"  v-model="password" placeholder="请输入密码" required>
               </div>
               <div class="group-ipt verify">
                 <input type="text" name="verify" id="verify" class="ipt" placeholder="输入验证码" v-model="yzm" required>

@@ -5,6 +5,7 @@
     :options="editorOption" style="height:400px">
     </quill-editor>
     <el-button style="margin-top: 55px;float: right;" type="primary" @click="submit">提交</el-button>
+    <div>{{content}}</div>
   </div>
 </template>
 <script>
@@ -62,3 +63,4 @@ export default {
   }
 }
 </script>
+<style src='./quill-editor.less'></style>

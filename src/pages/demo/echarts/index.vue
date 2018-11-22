@@ -18,17 +18,17 @@
   </section>
 </template>
 <script>
-  import charts from './echarts.vue';
-  export default {
-    data() {
-      return {
-        value5: 3.7
-      }
-    },
-    components: {
-      'v-charts': charts
+import charts from './echarts.vue'
+export default {
+  data () {
+    return {
+      value5: 3.7
     }
-  };
+  },
+  components: {
+    'v-charts': charts
+  }
+}
 </script>
 <style>
   .chart-container{

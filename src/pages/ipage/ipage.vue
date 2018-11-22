@@ -5,7 +5,7 @@
      {{collapsed?'':sysName}}
     </el-col>
     <el-col :span="10">
-      <div class="tools" @click.prevent="collapse">
+      <div class="tools" @click.prevent="collapse" v-show="!collapsedIcon">
         <i class="fa fa-align-justify"></i>
       </div>
     </el-col>
@@ -26,7 +26,7 @@
         <el-menu default-active="$route.path" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" unique-opened router v-show="!collapsed">
           <template v-for="(item,index) in $router.options.routes" v-if="!item.hidden">
               <el-submenu :index="index+''" v-if="!item.leaf" :key=index>
-                <template slot="title"><i :class="item.iconCls"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{item.name}}</template>
+                <template slot="title"><div class='title-name'><i :class="item.iconCls" style="line-height: 55px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{item.name}}</div></template>
                 <el-menu-item v-for="child in item.children" :index="child.path" :key="child.path" v-if="!child.hidden">{{child.name}}</el-menu-item>
               </el-submenu>
             <el-menu-item v-if="item.leaf&&item.children.length>0" :index="item.children[0].path" :key='index'>
@@ -55,7 +55,7 @@
       <section class="content-container">
         <div class="grid-content bg-purple-light">
           <el-col :span="24" class="breadcrumb-container">
-            <strong class="title">{{$route.name}}</strong>
+            <!-- <strong class="title">{{$route.name}}</strong> -->
             <el-breadcrumb separator="/" class="breadcrumb-inner">
               <el-breadcrumb-item v-for="item in $route.matched" :key="item.path">
                 {{ item.name }}

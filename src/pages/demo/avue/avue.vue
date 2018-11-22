@@ -57,4 +57,4 @@ export default {
   }
 }
 </script>
-<style>@import "./ceshi.less";</style>
+<style>@import "./avue.less";</style>

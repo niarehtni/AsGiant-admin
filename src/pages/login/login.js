@@ -7,9 +7,9 @@ export default {
       imgsrc: 'http://localhost/demo/00.vipadmin/sever/think-admin/public/admin/AuthCode/ImageCode',
       username: '',
       password: '',
-      activeName: 'first',
+      activeName: 'emailLogin',
       yzm: '',
-      enterPssword: ''
+      enterUser: '请输入邮箱'
     }
   },
   created () {
@@ -32,12 +32,12 @@ export default {
       console.log('====================================')
     },
     handleClick (tab, event) {
-      // if () {
-      //     enterPssword
-      // }
-      console.log('====================================')
-      console.log(this.activeName)
-      console.log('====================================')
+      let enUser = {
+        emailLogin: '邮箱',
+        userLogin: '用户',
+        phoneLogin: '手机'
+      }
+      this.enterUser = `请输入${enUser[this.activeName]}`
     //   console.log(tab)
     }
   }

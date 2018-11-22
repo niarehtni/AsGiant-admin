@@ -14,7 +14,8 @@ export default {
         type: [],
         resource: '',
         desc: ''
-      }
+      },
+      collapsedIcon: false
     }
   },
   methods: {
@@ -22,10 +23,10 @@ export default {
       console.log('submit!')
     },
     handleOpen () {
-      // console.log('handleOpen');
+      // console.log('handleOpen')
     },
     handleClose () {
-      // console.log('handleClose');
+      // console.log('handleClose')
     },
     // 退出登录
     logout: function () {
@@ -50,6 +51,14 @@ export default {
     }
   },
   mounted () {
+    var windowWidth = document.body.clientWidth
+    if (windowWidth >= 1440) {
+      this.collapsed = false
+    } else {
+      this.collapsed = true
+      this.collapsedIcon = true
+    }
+
     var user = sessionStorage.getItem('user')
     if (user) {
       user = JSON.parse(user)

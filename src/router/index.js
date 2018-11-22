@@ -20,6 +20,46 @@ let router = new Router({
       hidden: true
     },
     {
+      path: '/demo',
+      name: '模板',
+      component: () =>
+        import('@/pages/ipage/ipage.vue'),
+      iconCls: 'fa fa-users',
+      children: [{
+        path: '/avue',
+        name: '表格',
+        component: () =>
+            import('@/pages/demo/avue/avue.vue')
+      },
+      {
+        path: '/quill-editor',
+        name: '富文本',
+        component: () =>
+          import('@/pages/demo/quill-editor/quill-editor.vue')
+      }
+      // ,
+      // {
+      //   path: '/echarts',
+      //   name: '图表',
+      //   component: () =>
+      //       import('@/pages/demo/echarts/index.vue')
+      // }
+      // , {
+      //   path: '/fileTable',
+      //   component: () =>
+      //       import('@/pages/fileTable/table.vue'),
+      //   name: '栏目管理'
+      // }
+      // ,
+      // {
+      //   path: '/editor',
+      //   name: 'editor',
+      //   component: () =>
+      //       import('@/pages/editor/editor.vue')
+      // }
+      ]
+    },
+    {
       path: '/page',
       component: () =>
         import('@/pages/ipage/ipage.vue'),
