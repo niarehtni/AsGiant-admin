@@ -9,21 +9,21 @@ let router = new Router({
       path: '/',
       name: '登录',
       component: () =>
-        import('@/pages/login/login.vue'),
+        import('@/pages/system/login/login.vue'),
       hidden: true
     },
     {
       path: '/ipage',
       name: 'ipage',
       component: () =>
-        import('@/pages/ipage/ipage.vue'),
+        import('@/pages/system/ipage/ipage.vue'),
       hidden: true
     },
     {
       path: '/demo',
       name: '模板',
       component: () =>
-        import('@/pages/ipage/ipage.vue'),
+        import('@/pages/system/ipage/ipage.vue'),
       iconCls: 'fa fa-clone',
       children: [{
         path: '/avue',
@@ -41,66 +41,37 @@ let router = new Router({
         name: '富文本',
         component: () =>
             import('@/pages/demo/quill-editor/quill-editor.vue')
+      },
+      {
+        path: '/fileTable',
+        name: '上传图片',
+        component: () =>
+            import('@/pages/demo/fileTable/fileTable')
       }]
-    },
-    {
-      path: '/page',
-      component: () =>
-        import('@/pages/ipage/ipage.vue'),
-      name: '信息管理',
-      iconCls: 'fa fa-users',
-      children: [
-        {
-          path: '/home',
-          component: () =>
-            import('@/pages/home/home.vue'),
-          name: '首页',
-          iconCls: 'fa fa-book'
-        },
-        {
-          path: '/articleTable',
-          component: () =>
-          import('@/pages/articleTable/table.vue'),
-          name: '文章管理',
-          iconCls: 'fa fa-book'
-        }, {
-          path: '/fileTable',
-          component: () =>
-          import('@/pages/fileTable/table.vue'),
-          name: '栏目管理',
-          iconCls: 'fa fa-file-text-o'
-        },
-        {
-          path: '/editor',
-          name: 'editor',
-          component: () =>
-          import('@/pages/editor/editor.vue'),
-          hidden: true
-        }]
     },
     {
       path: '/manage',
       name: '管理员',
       component: () =>
-        import('@/pages/ipage/ipage.vue'),
+        import('@/pages/system/ipage/ipage.vue'),
       iconCls: 'fa fa-users',
       children: [
         {
           path: '/database',
           component: () =>
-            import('@/pages/database/database.vue'),
+            import('@/pages/manage/database/database.vue'),
           name: '数据库'
         },
         {
           path: '/usermanage',
           component: () =>
-            import('@/pages/usermanage/index.vue'),
+            import('@/pages/manage/usermanage/index.vue'),
           name: '用户管理'
         },
         {
           path: '/role',
           component: () =>
-            import('@/pages/role/role.vue'),
+            import('@/pages/manage/role/role.vue'),
           name: '角色管理'
         }
       ]
