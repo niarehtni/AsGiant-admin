@@ -2,6 +2,7 @@ import * as databaseLogic from '@/network/model/databaseLogic'
 export default {
   data () {
     return {
+      tableLoading: false,
       page: {
         pageSizes: [10, 20, 30, 40],
         total: 20,
@@ -66,13 +67,15 @@ export default {
   },
   methods: {
     loadUserList () {
+      this.tableLoading = true
       let data = {
         'currentPage': this.page.currentPage,
         'pageSize': this.page.pageSize
       }
-      databaseLogic.finddatabase(data, (res) => {
+      databaseLogic.findDatabase(data, (res) => {
         this.data = res.data
         this.page.total = res.total
+        this.tableLoading = false
       })
     },
     sizeChange (val) {
@@ -220,7 +223,7 @@ export default {
         'currentPage': 1,
         'pageSize': 10
       }
-      databaseLogic.finddatabase(data, (res) => {
+      databaseLogic.findDatabase(data, (res) => {
         this.data = res.data
         this.page.total = res.total
       })

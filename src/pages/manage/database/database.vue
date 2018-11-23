@@ -6,6 +6,7 @@
                 :page="page"
                 @size-change="sizeChange"
                 @current-change="currentChange"
+                :table-loading="tableLoading"
                 @row-save="handleSave"
                 @row-update="handleUpdate"
                 @refresh-change="handlerefreshChange"

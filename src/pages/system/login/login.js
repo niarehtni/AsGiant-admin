@@ -29,9 +29,6 @@ export default {
       img.src = 'http://localhost/demo/00.vipadmin/sever/think-admin/public/admin/AuthCode/ImageCode'
     },
     login () {
-      console.log('====================================')
-      console.log(loginLogic.loginEmail)
-      console.log('====================================')
       let data = {
         'code': this.loginForm.code,
         'e_mail': this.loginForm.username,

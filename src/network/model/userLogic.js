@@ -4,7 +4,7 @@ import * as dataAcquisition from '../dataAcquisition'
 // 获取人员列表数据
 function findUser (params, getdata, err) {
   params.classid = sysJson.sysClassid.userClassid
-  dataAcquisition.findUserList(params, (res) => {
+  dataAcquisition.Column.CheckTable(params, (res) => {
     let Jsondata = res.data
     getdata(Jsondata)
   }, (bugerr) => {
@@ -15,7 +15,17 @@ function findUser (params, getdata, err) {
 // 查询管理列表数据
 function findRoleList (params, getdata, err) {
   params.classid = sysJson.sysClassid.role_dictionaryClassid
-  dataAcquisition.findUserList(params, (res) => {
+  dataAcquisition.Column.CheckTable(params, (res) => {
+    let Jsondata = res.data
+    getdata(Jsondata)
+  }, (bugerr) => {
+    console.log('获取数据失败')
+  })
+}
+
+function userList (params, getdata, bugerr) {
+  params.classid = sysJson.sysClassid.userClassid
+  dataAcquisition.Column.CheckTable(params, (res) => {
     let Jsondata = res.data
     getdata(Jsondata)
   }, (bugerr) => {
@@ -25,5 +35,6 @@ function findRoleList (params, getdata, err) {
 
 export {
   findUser,
-  findRoleList
+  findRoleList,
+  userList
 }

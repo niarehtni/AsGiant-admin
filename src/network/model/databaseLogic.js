@@ -1,9 +1,8 @@
 import * as sysJson from '../sysJson'
 import * as dataAcquisition from '../dataAcquisition'
 
-// 获取新闻列表数据
-function finddatabase (params, getdata, bugerr) {
-  dataAcquisition.databaseList(params, (res) => {
+function findDatabase (params, getdata, bugerr) {
+  dataAcquisition.Column.CheckTableList(params, (res) => {
     let Jsondata = res.data
     getdata(Jsondata)
   }, (bugerr) => {
@@ -12,7 +11,7 @@ function finddatabase (params, getdata, bugerr) {
 }
 
 function newTable (params, getdata, bugerr) {
-  dataAcquisition.newTableOperation(params, (res) => {
+  dataAcquisition.DataCenter.newTable(params, (res) => {
     let Jsondata = res.data
     getdata(Jsondata)
   }, (bugerr) => {
@@ -21,7 +20,7 @@ function newTable (params, getdata, bugerr) {
 }
 
 function updateTable (params, getdata, bugerr) {
-  dataAcquisition.updateTableOperation(params, (res) => {
+  dataAcquisition.DataCenter.updateTable(params, (res) => {
     let Jsondata = res.data
     getdata(Jsondata)
   }, (bugerr) => {
@@ -30,7 +29,7 @@ function updateTable (params, getdata, bugerr) {
 }
 
 function deleTable (params, getdata, bugerr) {
-  dataAcquisition.deleTableOperation(params, (res) => {
+  dataAcquisition.DataCenter.deleTableField(params, (res) => {
     let Jsondata = res.data
     getdata(Jsondata)
   }, (bugerr) => {
@@ -40,7 +39,7 @@ function deleTable (params, getdata, bugerr) {
 
 function programList (params, getdata, bugerr) {
   params.classid = sysJson.sysClassid.programClassid
-  dataAcquisition.checkField(params, (res) => {
+  dataAcquisition.Info.checkField(params, (res) => {
     let Jsondata = res.data
     getdata(Jsondata)
   }, (bugerr) => {
@@ -50,7 +49,7 @@ function programList (params, getdata, bugerr) {
 
 function roleList (params, getdata, bugerr) {
   params.classid = sysJson.sysClassid.roleClassid
-  dataAcquisition.checkField(params, (res) => {
+  dataAcquisition.Info.checkField(params, (res) => {
     let Jsondata = res.data
     getdata(Jsondata)
   }, (bugerr) => {
@@ -60,7 +59,7 @@ function roleList (params, getdata, bugerr) {
 
 function roleTitleaddInfos (params, getdata, bugerr) {
   params.classid = sysJson.sysClassid.role_dictionaryClassid
-  dataAcquisition.addInfos(params, (res) => {
+  dataAcquisition.Info.addInfos(params, (res) => {
     let Jsondata = res.data
     getdata(Jsondata)
   }, (bugerr) => {
@@ -70,7 +69,7 @@ function roleTitleaddInfos (params, getdata, bugerr) {
 
 function deleRole (params, getdata, bugerr) {
   params.classid = sysJson.sysClassid.role_dictionaryClassid
-  dataAcquisition.deleInfos(params, (res) => {
+  dataAcquisition.Info.deleInfos(params, (res) => {
     let Jsondata = res.data
     getdata(Jsondata)
   }, (bugerr) => {
@@ -80,7 +79,7 @@ function deleRole (params, getdata, bugerr) {
 
 function updateRole (params, getdata, bugerr) {
   params.classid = sysJson.sysClassid.role_dictionaryClassid
-  dataAcquisition.updateInfos(params, (res) => {
+  dataAcquisition.Info.updateInfos(params, (res) => {
     let Jsondata = res.data
     getdata(Jsondata)
   }, (bugerr) => {
@@ -89,7 +88,7 @@ function updateRole (params, getdata, bugerr) {
 }
 
 export {
-  finddatabase,
+  findDatabase,
   newTable,
   updateTable,
   deleTable,
