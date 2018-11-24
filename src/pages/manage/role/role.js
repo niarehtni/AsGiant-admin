@@ -1,5 +1,6 @@
 import * as userLogic from '@/network/model/userLogic'
 import * as databaseLogic from '@/network/model/databaseLogic'
+import * as common from '@/common/js/common'
 // import { mapGetters } from 'vuex'
 // import { roleOption } from '@/const/admin/adminTabelOption.js'
 export default {
@@ -7,9 +8,12 @@ export default {
   components: {},
   data () {
     return {
+      roleState: {
+        infoJson: {}
+      }, // 点击状态
       fieldData: [],
       chooseField: [],
-      roleList: {},
+      databaseList: {},
       tableOption: {
         border: true,
         index: true,
@@ -47,24 +51,11 @@ export default {
         box: false,
         check: []
       },
-      loading: false,
-      addField: {
-        infoJson: {
-          table: '',
-          classid: '',
-          field: '',
-          roleid: '',
-          roleName: '',
-          control: ''
-        }
+      addUrl: true,
+      roleInfos: {
+        infoJson: {}
       },
-      checkRole: {
-        infoJson: {
-          classid: '',
-          roleid: '',
-          control: ''
-        }
-      }
+      loading: false
     }
   },
   created () {
@@ -84,13 +75,41 @@ export default {
      *
      **/
     handleGradeUpdate () {
-      // console.log('====================================')
-      // console.log(this.addField)
-      // console.log('====================================')
-      // this.tabelObj.check = [].concat(this.grade.check);
-      // this.tabelObj = {};
-      // this.grade.check = [];
-      this.grade.box = false
+      if (this.addUrl === true) {
+        this.loading = true
+        this.roleInfos.send = {
+          'send': 0,
+          'email': 'BBA6E0E3-442E-6666-6B6B-53639CD557CC'
+        }
+        databaseLogic.addRoleFiled(this.roleInfos, res => {
+          if (res.flag === 1) {
+            this.grade.box = false
+            this.$message({
+              showClose: true,
+              message: '添加成功',
+              type: 'success'
+            })
+          }
+          this.loading = false
+        })
+      } else {
+        let data = {
+          infoJson: this.roleInfos.infoJson,
+          mainKey: 'table,control,roleid',
+          mainVal: `${this.roleInfos.infoJson.table},${this.roleInfos.infoJson.control},${this.roleInfos.infoJson.roleid}`
+        }
+        databaseLogic.upRoleFiled(data, res => {
+          if (res.flag === 1) {
+            this.grade.box = false
+            this.$message({
+              showClose: true,
+              message: '添加成功',
+              type: 'success'
+            })
+          }
+          this.loading = false
+        })
+      }
     },
     /**
      * @title 权限选择
@@ -107,20 +126,67 @@ export default {
      * @title 打开权限
      */
     handleGrade (row, index) {
-      this.getRoleList()
-      this.fieldData = []
-      this.addField.infoJson.control = index
-      this.addField.infoJson.roleid = row.roleid
-      this.addField.infoJson.roleName = row.roleName
-
-      this.checkRole.infoJson.roleid = row.roleid
-      this.checkRole.infoJson.control = index
-
-      // this.$store.dispatch("GetMenuAll").then(data => {
+      this.roleInfos.infoJson.roleid = row.roleid
+      this.roleInfos.infoJson.control = index
+      this.roleState.infoJson = {
+        classid: '',
+        roleid: row.roleid,
+        control: index
+      }
+      this.getDatabaseList()// 获取数据库列表
       this.grade.box = true
-      // this.tabelObj = row;
-      // this.grade.check = this.tabelObj.check;
-      // });
+    },
+    // 获取所有的数据库
+    getDatabaseList () {
+      let data = {
+        currentPage: 1,
+        pageSize: 1000
+      }
+      databaseLogic.findDatabase(data, res => {
+        this.databaseList = res.data
+        this.getProgram(res.data[0].column, res.data[0].columnid)
+      })
+      // fieldData
+    },
+    getProgram (table, classid) {
+      this.roleInfos.infoJson.table = table
+      this.roleInfos.infoJson.classid = classid
+
+      this.loading = true
+      // 获取table信息
+      // this.roleState
+      let data = {
+        infoJson: {
+          'table_form': table
+        }
+      }
+      databaseLogic.programList(data, res => {
+        this.fieldData = res.msg === '' ? [] : res.msg
+
+        this.roleState.infoJson.classid = classid
+
+        databaseLogic.roleList(this.roleState, res => {
+          if (res.msg === '') {
+            this.addUrl = true
+          } else {
+            this.addUrl = false
+            this.chooseField = res.msg[0].field.split('||&&||')
+
+            if (this.chooseField) {
+              this.chooseField.forEach(row => {
+                for (let index = 0; index < this.fieldData.length; index++) {
+                  if (this.fieldData[index].field === row) {
+                    this.$refs.multipleTable.toggleRowSelection(this.fieldData[index])
+                  }
+                }
+              })
+            } else {
+              this.$refs.multipleTable.clearSelection()
+            }
+          }
+        })
+        this.loading = false
+      })
     },
     /**
      * @title 打开新增窗口
@@ -148,17 +214,6 @@ export default {
       })
     },
 
-    getRoleList () {
-      let data = {
-        currentPage: 1,
-        pageSize: 1000
-      }
-      databaseLogic.findDatabase(data, res => {
-        this.roleList = res.data
-      })
-
-      // fieldData
-    },
     /**
      * @title 数据添加
      * @param row 为当前的数据
@@ -167,7 +222,7 @@ export default {
      **/
     handleSave (row, done) {
       let data = {
-        infoJson: {'roleName': row.roleName, 'roleid': this.generateUUID()},
+        infoJson: {'roleName': row.roleName, 'roleid': common.generateUUID},
         send: {'send': 0, 'email': 'BBA6E0E3-442E-6666-6B6B-53639CD557CC'}
       }
       databaseLogic.roleTitleaddInfos(data, res => {
@@ -175,15 +230,15 @@ export default {
       })
       done()
     },
-    generateUUID () {
-      var d = new Date().getTime()
-      var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-        var r = (d + Math.random() * 16) % 16 | 0
-        d = Math.floor(d / 16)
-        return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16)
-      })
-      return uuid
-    },
+    // generateUUID () {
+    //   var d = new Date().getTime()
+    //   var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    //     var r = (d + Math.random() * 16) % 16 | 0
+    //     d = Math.floor(d / 16)
+    //     return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16)
+    //   })
+    //   return uuid
+    // },
     /**
      * @title 数据删除
      * @param row 为当前的数据
@@ -266,47 +321,12 @@ export default {
     submit () {
       this.$message.success('当前数据' + JSON.stringify(this.form))
     },
-    getProgram (table, classid) {
-      this.addField.infoJson.table = table
-      this.addField.infoJson.classid = classid
-      this.loading = true
-      // 获取table信息
-      let data = {
-        'infoJson': {'table_form': table}
-      }
-      databaseLogic.programList(data, res => {
-        this.fieldData = res.msg === '' ? [] : res.msg
-
-        this.checkRole.infoJson.classid = classid
-
-        databaseLogic.roleList(this.checkRole, res => {
-          if (res.msg === '') {
-
-          } else {
-            this.chooseField = res.msg[0].field.split('||&&||')
-
-            if (this.chooseField) {
-              this.chooseField.forEach(row => {
-                for (let index = 0; index < this.fieldData.length; index++) {
-                  if (this.fieldData[index].field === row) {
-                    this.$refs.multipleTable.toggleRowSelection(this.fieldData[index])
-                  }
-                }
-              })
-            } else {
-              this.$refs.multipleTable.clearSelection()
-            }
-          }
-        })
-        this.loading = false
-      })
-    },
     handleSelectionChange (val) {
       let setField = ''
       for (let index = 0; index < val.length; index++) {
         setField = setField + '||&&||' + val[index].field
       }
-      this.addField.infoJson.field = setField.substr(6)
+      this.roleInfos.infoJson.field = setField.substr(6)
     }
   }
 }

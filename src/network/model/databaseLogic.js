@@ -29,7 +29,7 @@ function updateTable (params, getdata, bugerr) {
 }
 
 function deleTable (params, getdata, bugerr) {
-  dataAcquisition.DataCenter.deleTableField(params, (res) => {
+  dataAcquisition.DataCenter.deleTable(params, (res) => {
     let Jsondata = res.data
     getdata(Jsondata)
   }, (bugerr) => {
@@ -39,16 +39,6 @@ function deleTable (params, getdata, bugerr) {
 
 function programList (params, getdata, bugerr) {
   params.classid = sysJson.sysClassid.programClassid
-  dataAcquisition.Info.checkField(params, (res) => {
-    let Jsondata = res.data
-    getdata(Jsondata)
-  }, (bugerr) => {
-    console.log('获取数据失败')
-  })
-}
-
-function roleList (params, getdata, bugerr) {
-  params.classid = sysJson.sysClassid.roleClassid
   dataAcquisition.Info.checkField(params, (res) => {
     let Jsondata = res.data
     getdata(Jsondata)
@@ -87,6 +77,36 @@ function updateRole (params, getdata, bugerr) {
   })
 }
 
+function addRoleFiled (params, getdata, bugerr) {
+  params.classid = sysJson.sysClassid.roleClassid
+  dataAcquisition.Info.addInfos(params, (res) => {
+    let Jsondata = res.data
+    getdata(Jsondata)
+  }, (bugerr) => {
+    console.log('获取数据失败')
+  })
+}
+
+function upRoleFiled (params, getdata, bugerr) {
+  params.classid = sysJson.sysClassid.roleClassid
+  dataAcquisition.Info.updateInfos(params, (res) => {
+    let Jsondata = res.data
+    getdata(Jsondata)
+  }, (bugerr) => {
+    console.log('获取数据失败')
+  })
+}
+
+function roleList (params, getdata, bugerr) {
+  params.classid = sysJson.sysClassid.roleClassid
+  dataAcquisition.Info.checkField(params, (res) => {
+    let Jsondata = res.data
+    getdata(Jsondata)
+  }, (bugerr) => {
+    console.log('获取数据失败')
+  })
+}
+
 export {
   findDatabase,
   newTable,
@@ -96,5 +116,7 @@ export {
   roleList,
   roleTitleaddInfos,
   deleRole,
-  updateRole
+  updateRole,
+  addRoleFiled,
+  upRoleFiled
 }

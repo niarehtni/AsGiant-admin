@@ -14,16 +14,16 @@
                   slot="menu">
           <el-button icon="el-icon-check"
                      size="small"
-                     @click="handleGrade(scope.row,0)">增加权限</el-button>
+                     @click="handleGrade(scope.row,0)">增加</el-button>
           <el-button icon="el-icon-check"
                      size="small"
-                     @click="handleGrade(scope.row,1)">删除权限</el-button>
+                     @click="handleGrade(scope.row,1)">删除</el-button>
           <el-button icon="el-icon-check"
                      size="small"
-                     @click="handleGrade(scope.row,2)">修改权限</el-button>
+                     @click="handleGrade(scope.row,2)">修改</el-button>
           <el-button icon="el-icon-check"
                      size="small"
-                     @click="handleGrade(scope.row,3)">查询权限</el-button>
+                     @click="handleGrade(scope.row,3)">查询</el-button>
         </template>
       </avue-crud>
       <el-dialog title="权限"
@@ -38,7 +38,7 @@
                   <el-menu
                     default-active="2"
                     class="el-menu-vertical-demo">
-                    <el-menu-item :index=item.columnid v-for="(item,index) in roleList" :key=index @click="getProgram(item.column,item.columnid)">
+                    <el-menu-item :index=item.columnid v-for="(item,index) in databaseList" :key=index @click="getProgram(item.column,item.columnid)">
                       <span slot="title">{{item.columnName}}</span>
                     </el-menu-item>
                   </el-menu>
