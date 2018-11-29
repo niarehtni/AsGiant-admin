@@ -41,7 +41,9 @@ let PeopleInterface = {
   // 邮箱登录
   loginEmail: sysJson.address.url + 'admin/People/loginEmail', // 登录接口
   // 用户登录
-  loginUserName: sysJson.address.url + 'admin/People/loginUserName' // 登录接口
+  loginUserName: sysJson.address.url + 'admin/People/loginUserName', // 登录接口
+
+  loginImg: sysJson.address.url + 'admin/Code/ImageCode'
 }
 
 export {

@@ -103,7 +103,7 @@ export default {
             this.grade.box = false
             this.$message({
               showClose: true,
-              message: '添加成功',
+              message: '修改成功',
               type: 'success'
             })
           }

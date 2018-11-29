@@ -57,15 +57,15 @@ let Info = {
 let People = {
   // 电话/邮箱  注册接口
   registered: (params, callback, err) => {
-    dataLink.dataLinkPostJson(dataUrl.InfoInterface.updateInfos, params, callback, err)
+    dataLink.dataLinkPostJson(dataUrl.PeopleInterface.updateInfos, params, callback, err)
   },
   // 用户名注册接口
   registeredUser: (params, callback, err) => {
-    dataLink.dataLinkPostJson(dataUrl.InfoInterface.registeredUser, params, callback, err)
+    dataLink.dataLinkPostJson(dataUrl.PeopleInterface.registeredUser, params, callback, err)
   },
   // 手机号登录
   loginTel: (params, callback, err) => {
-    dataLink.dataLinkPostJson(dataUrl.InfoInterface.loginTel, params, callback, err)
+    dataLink.dataLinkPostJson(dataUrl.PeopleInterface.loginTel, params, callback, err)
   },
   // 邮箱登录
   loginEmail: (params, callback, err) => {
@@ -73,7 +73,7 @@ let People = {
   },
   // 用户登录
   loginUserName: (params, callback, err) => {
-    dataLink.dataLinkPostJson(dataUrl.InfoInterface.loginUserName, params, callback, err)
+    dataLink.dataLinkPostJson(dataUrl.PeopleInterface.loginUserName, params, callback, err)
   }
 }
 

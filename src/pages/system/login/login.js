@@ -1,4 +1,6 @@
 import * as loginLogic from '@/network/model/loginLogic'
+import * as sysJson from '@/network/sysJson'
+import { debug } from 'util'
 
 export default {
   name: 'login',
@@ -6,7 +8,7 @@ export default {
   },
   data () {
     return {
-      imgsrc: 'http://localhost/demo/00.vipadmin/sever/think-admin/public/admin/AuthCode/ImageCode',
+      imgsrc: sysJson.address.url + 'admin/Code/ImageCode',
       loginForm: {
         username: '954663633@qq.com',
         password: '123456',
@@ -26,7 +28,7 @@ export default {
   methods: {
     reimg () {
       var img = this.$refs.img
-      img.src = 'http://localhost/demo/00.vipadmin/sever/think-admin/public/admin/AuthCode/ImageCode'
+      img.src = sysJson.address.url + 'admin/Code/ImageCode'
     },
     login () {
       let data = {

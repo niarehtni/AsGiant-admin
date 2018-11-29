@@ -12,7 +12,10 @@
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
     "create": "export NODE_ENV=daichao && node build/create-page/create-page.js",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "dev:build": "NODE_PRODUCT='dev' run build",
+    "loan:dev": "NODE_PRODUCT='dev' npm run dev"
+
   },
   "dependencies": {
     "@smallwei/avue": "^1.2.1",

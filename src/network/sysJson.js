@@ -6,10 +6,13 @@ let sysClassid = {
   'roleClassid': 'AADA4670-E3B2-A08C-D287-0DD4EA48A05D' // 角色
 }
 let address = {
-  // 'url': 'http://admin.shanghai70.com/public/'
-  'url': '/api/demo/00.vipadmin/sever/think-admin/public/'
+  'url': 'api/demo/00.vipadmin/sever/think-admin/public/'
 }
-
+if (process.env.NODE_PRODUCT === 'dev') {
+  address = {
+    'url': 'http://admin.shanghai70.com/public/'
+  }
+}
 export {
   sysClassid,
   address
