@@ -15,7 +15,6 @@
     "build": "node build/build.js",
     "dev:build": "NODE_PRODUCT='dev' run build",
     "loan:dev": "NODE_PRODUCT='dev' npm run dev"
-
   },
   "dependencies": {
     "@smallwei/avue": "^1.2.1",
@@ -86,7 +85,7 @@
     "vue-template-compiler": "^2.5.2",
     "vux-loader": "^1.2.9",
     "webpack": "^3.6.0",
-    "webpack-bundle-analyzer": "^2.9.0",
+    "webpack-bundle-analyzer": "^2.13.1",
     "webpack-dev-server": "^2.9.1",
     "webpack-merge": "^4.1.0",
     "yaml-loader": "^0.5.0"
