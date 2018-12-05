@@ -3,80 +3,83 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-let router = new Router({
-  routes: [
-    {
-      path: '/',
-      name: '登录',
+// 懒加载
+const routes = [
+  {
+    path: '/',
+    name: '登录',
+    component: () =>
+            import('@/pages/system/login/login.vue'),
+    hidden: true
+  },
+  {
+    path: '/ipage',
+    name: 'ipage',
+    component: () =>
+            import('@/pages/system/ipage/ipage.vue'),
+    hidden: true
+  },
+  {
+    path: '/demo',
+    name: '模板',
+    component: () =>
+            import('@/pages/system/ipage/ipage.vue'),
+    iconCls: 'fa fa-clone',
+    children: [{
+      path: '/avue',
+      name: '表格',
       component: () =>
-        import('@/pages/system/login/login.vue'),
-      hidden: true
+                  import('@/pages/demo/table/table.vue')
+    }, {
+      path: '/form',
+      name: '表单',
+      component: () =>
+                import('@/pages/demo/form/form.vue')
     },
     {
-      path: '/ipage',
-      name: 'ipage',
+      path: '/quill-editor',
+      name: '富文本',
       component: () =>
-        import('@/pages/system/ipage/ipage.vue'),
-      hidden: true
+                import('@/pages/demo/quill-editor/quill-editor.vue')
     },
     {
-      path: '/demo',
-      name: '模板',
+      path: '/fileTable',
+      name: '上传图片',
       component: () =>
-        import('@/pages/system/ipage/ipage.vue'),
-      iconCls: 'fa fa-clone',
-      children: [{
-        path: '/avue',
-        name: '表格',
+                import('@/pages/demo/fileTable/fileTable')
+    }]
+  },
+  {
+    path: '/manage',
+    name: '管理员',
+    component: () =>
+            import('@/pages/system/ipage/ipage.vue'),
+    iconCls: 'fa fa-users',
+    children: [
+      {
+        path: '/database',
         component: () =>
-              import('@/pages/demo/table/table.vue')
-      }, {
-        path: '/form',
-        name: '表单',
-        component: () =>
-            import('@/pages/demo/form/form.vue')
+                import('@/pages/manage/database/database.vue'),
+        name: '数据库'
       },
       {
-        path: '/quill-editor',
-        name: '富文本',
+        path: '/usermanage',
         component: () =>
-            import('@/pages/demo/quill-editor/quill-editor.vue')
+                import('@/pages/manage/usermanage/index.vue'),
+        name: '用户管理'
       },
       {
-        path: '/fileTable',
-        name: '上传图片',
+        path: '/role',
         component: () =>
-            import('@/pages/demo/fileTable/fileTable')
-      }]
-    },
-    {
-      path: '/manage',
-      name: '管理员',
-      component: () =>
-        import('@/pages/system/ipage/ipage.vue'),
-      iconCls: 'fa fa-users',
-      children: [
-        {
-          path: '/database',
-          component: () =>
-            import('@/pages/manage/database/database.vue'),
-          name: '数据库'
-        },
-        {
-          path: '/usermanage',
-          component: () =>
-            import('@/pages/manage/usermanage/index.vue'),
-          name: '用户管理'
-        },
-        {
-          path: '/role',
-          component: () =>
-            import('@/pages/manage/role/role.vue'),
-          name: '角色管理'
-        }
-      ]
-    }
-  ]
+                import('@/pages/manage/role/role.vue'),
+        name: '角色管理'
+      }
+    ]
+  }]
+
+// 实例化
+const router = new Router({
+  routes
 })
 
 router.beforeEach((to, from, next) => { // beforeEach是router的钩子函数，在进入路由前执行
