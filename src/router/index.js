@@ -61,6 +61,12 @@ const routes = [
         component: () =>
                 import('@/pages/manage/database/database.vue'),
         name: '数据库'
+      }, {
+        path: '/tableField',
+        component: () =>
+          import('@/pages/manage/tableField/tableField.vue'),
+        name: '字段管理',
+        hidden: true
       },
       {
         path: '/usermanage',

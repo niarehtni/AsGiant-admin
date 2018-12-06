@@ -2,7 +2,7 @@ export default {
   data () {
     return {
       vheight: document.documentElement.offsetHeight - 60 || document.body.offsetHeight - 60,
-      sysName: 'VueDemo',
+      sysName: 'AsGiant-admin',
       collapsed: false,
       sysUserName: '',
       sysUserAvatar: require('./images/img.jpg'),

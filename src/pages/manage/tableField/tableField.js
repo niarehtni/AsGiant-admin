@@ -1,70 +1,37 @@
 import * as databaseLogic from '@/network/model/databaseLogic'
 import {pageConfig} from './other/pageConfig'
 export default {
+  name: 'tableField',
   data () {
     return {
+      columnid: '',
+      columnName: '',
       tableLoading: false,
-      page: {
-        pageSizes: [10, 20, 30, 40],
-        total: 20,
-        currentPage: 1,
-        pageSize: 5
-      },
-      data: [
-        {
-          nickname: '张三',
-          ipone: '111'
-        }
-      ],
+      data: [{
+        nickname: '张三',
+        ipone: '111'
+      }],
       option: pageConfig
     }
   },
   created () {
-    this.loadUserList()
+    this.columnid = this.$route.query.columnid
+    this.columnName = this.$route.query.columnName
+    this.column = this.$route.query.column
+    this.loadTableFieldList()
   },
   methods: {
-    handleRowDBLClick (row, event) {
-      if (!(row.column.includes('zmyq_'))) {
-        this.$message({
-          showClose: true,
-          message: '不能修改系统模块',
-          type: 'error'
-        })
-        return
-      }
-      this.$router.push({
-        path: 'tableField',
-        query: {
-          columnid: row.columnid,
-          columnName: row.columnName,
-          column: row.column
-        }
-      })
-    },
-    selectionChange (list) {
-      this.$message.success('选中的数据' + JSON.stringify(list))
-    },
-    loadUserList () {
+    loadTableFieldList () {
       this.tableLoading = true
       let data = {
-        'currentPage': this.page.currentPage,
-        'pageSize': this.page.pageSize
+        infoJson: {
+          'table_form': this.column
+        }
       }
-      databaseLogic.findDatabase(data, (res) => {
-        this.data = res.data
-        this.page.total = res.total
+      databaseLogic.programList(data, res => {
+        this.data = res.msg
         this.tableLoading = false
       })
-    },
-    sizeChange (val) {
-      this.page.pageSize = val
-      this.loadUserList()
-      // this.$message.success("行数" + val);
-    },
-    currentChange (val) {
-      this.page.currentPage = val
-      this.loadUserList()
-      this.$message.success('页码' + val)
     },
     /**
      * @title 打开新增窗口
@@ -82,7 +49,9 @@ export default {
     handleList () {
       this.tableLoading = true
       this.$store
-        .dispatch('GetUserData', { page: `${this.tablePage}` })
+        .dispatch('GetUserData', {
+          page: `${this.tablePage}`
+        })
         .then(data => {
           setTimeout(() => {
             this.tableData = data.tableData
@@ -114,7 +83,7 @@ export default {
             type: 'success'
           })
           done()
-          this.loadUserList()
+          this.loadTableFieldList()
         } else {
           this.$message({
             showClose: true,
@@ -147,7 +116,7 @@ export default {
                 message: '删除成功',
                 type: 'success'
               })
-              this.loadUserList()
+              this.loadTableFieldList()
             } else {
               this.$message({
                 showClose: true,
@@ -157,7 +126,7 @@ export default {
             }
           })
         })
-        // .catch(err => {})
+      // .catch(err => {})
     },
     /**
      * @title 数据更新
@@ -182,7 +151,7 @@ export default {
             type: 'success'
           })
           done()
-          this.loadUserList()
+          this.loadTableFieldList()
         } else {
           this.$message({
             showClose: true,
@@ -196,15 +165,8 @@ export default {
      * @title 刷新数据
      *
      **/
-    handlerefreshChange (page) {
-      let data = {
-        'currentPage': 1,
-        'pageSize': 10
-      }
-      databaseLogic.findDatabase(data, (res) => {
-        this.data = res.data
-        this.page.total = res.total
-      })
+    handlerefreshChange () {
+      this.loadTableFieldList()
     }
 
   }
