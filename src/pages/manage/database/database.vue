@@ -10,7 +10,11 @@
                 @row-save="handleSave"
                 @row-update="handleUpdate"
                 @refresh-change="handlerefreshChange"
-                @row-del="handleDel"></avue-crud>
+                @row-del="handleDel"
+                @selection-change="selectionChange"
+                @row-dblclick="handleRowDBLClick"
+                >
+      </avue-crud>
     </el-card>
   </section>
 </template>

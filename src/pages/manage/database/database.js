@@ -7,7 +7,7 @@ export default {
         pageSizes: [10, 20, 30, 40],
         total: 20,
         currentPage: 1,
-        pageSize: 10
+        pageSize: 5
       },
       data: [
         {
@@ -66,6 +66,16 @@ export default {
     this.loadUserList()
   },
   methods: {
+    handleRowDBLClick (row, event) {
+      this.$notify({
+        showClose: true,
+        message: '双击' + JSON.stringify(row),
+        type: 'success'
+      })
+    },
+    selectionChange (list) {
+      this.$message.success('选中的数据' + JSON.stringify(list))
+    },
     loadUserList () {
       this.tableLoading = true
       let data = {

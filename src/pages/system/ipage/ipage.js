@@ -1,6 +1,7 @@
 export default {
   data () {
     return {
+      vheight: document.documentElement.offsetHeight - 60 || document.body.offsetHeight - 60,
       sysName: 'VueDemo',
       collapsed: false,
       sysUserName: '',
@@ -52,8 +53,7 @@ export default {
   },
   mounted () {
     var windowWidth = document.body.clientWidth
-
-    if (windowWidth >= 1440) {
+    if (windowWidth >= 1000) {
       this.collapsed = false
       this.collapsedIcon = false
       console.log('============大屏==============')

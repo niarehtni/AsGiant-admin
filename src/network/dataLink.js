@@ -11,7 +11,7 @@ function dataLinkGetJson (url, callback, err) {
     method: 'get',
     url: url,
     headers: {
-      'Authorization': Authorization
+      'auth': Authorization
     },
     data: {}
   }).then(function (res) {
@@ -30,7 +30,7 @@ function dataLinkPostJson (url, params, callback, err) {
     method: 'post',
     url: url,
     headers: {
-      'Authorization': Authorization
+      'auth': Authorization
     },
     data: params
   }).then(function (res) {

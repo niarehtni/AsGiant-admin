@@ -5,12 +5,14 @@ let sysClassid = {
   'programClassid': '55E01CCA8-94FA-4BFE-0623-3D4563E6F18B', // 字段表
   'roleClassid': 'AADA4670-E3B2-A08C-D287-0DD4EA48A05D' // 角色
 }
+// "development"
 let address = {
   'url': 'api/demo/00.vipadmin/sever/think-admin/public/'
 }
-if (process.env.NODE_PRODUCT === 'dev') {
+
+if (process.env.NODE_ENV === 'production') {
   address = {
-    'url': 'http://admin.shanghai70.com/public/'
+    'url': './'
   }
 }
 export {

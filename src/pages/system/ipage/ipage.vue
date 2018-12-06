@@ -52,7 +52,7 @@
           </li>
         </ul>
     </aside>
-      <section class="content-container">
+      <section class="content-container" :style="{height:vheight+'px'}">
         <div class="grid-content bg-purple-light">
           <el-col :span="24" class="breadcrumb-container">
             <!-- <strong class="title">{{$route.name}}</strong> -->
