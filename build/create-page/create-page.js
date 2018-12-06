@@ -49,7 +49,7 @@ const createPage = {
     // vue文件
     var vueFile = path.join(this.pageDir, this.pageName, `${this.pageName}.vue`)
 
-    // var jsFile = path.join(this.pageDir, this.pageName, `${this.pageName}.js`)
+    var jsFile = path.join(this.pageDir, this.pageName, `${this.pageName}.js`)
 
     var lessFile = path.join(this.pageDir, this.pageName, `${this.pageName}.less`)
 
@@ -62,7 +62,7 @@ const createPage = {
     // var mockDataFile = path.join(mockDataDir, 'index.js')
 
     fs.writeFileSync(vueFile, generateTpl.vue(this.pageName))
-    // fs.writeFileSync(jsFile, generateTpl.js)
+    fs.writeFileSync(jsFile, generateTpl.js(this.pageName))
     fs.writeFileSync(lessFile, generateTpl.less(this.pageName))
     fs.writeFileSync(readmeFile, '')
     fs.mkdirSync(imageDir)

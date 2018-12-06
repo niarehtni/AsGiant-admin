@@ -23,7 +23,28 @@ export default {
   }
 }
 </script>
-<style>@import "./${pageName}.less";</style>
+<style src = './${pageName}.js'></style>
+<style src = './${pageName}.less'></style>
+`
+  return tpl
+}
+
+exports.js = function (pageName) {
+var tpl = `
+export default {
+  name: '${pageName}',
+  data () {
+    return {
+
+    }
+  },
+  created () {
+
+  },
+  methods: {
+
+  }
+}
 `
   return tpl
 }
